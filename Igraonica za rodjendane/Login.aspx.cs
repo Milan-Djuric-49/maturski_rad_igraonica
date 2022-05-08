@@ -42,6 +42,7 @@ namespace Igraonica_za_rodjendane
                             Korisnik.user_ime = tabela.Rows[0]["ime"].ToString();
                             Korisnik.user_prezime = tabela.Rows[0]["prezime"].ToString();
                             Korisnik.user_uloga = (int)tabela.Rows[0]["uloga"];
+                            Korisnik.user_id = (int)tabela.Rows[0]["id"];
 
                             if (Korisnik.user_uloga == 1)
                             {

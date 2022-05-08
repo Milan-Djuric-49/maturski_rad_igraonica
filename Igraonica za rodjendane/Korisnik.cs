@@ -10,5 +10,6 @@ namespace Igraonica_za_rodjendane
         static public int user_uloga = 0;
         static public string user_ime = "";
         static public string user_prezime = "";
+        static public int user_id = 0;
     }
 }

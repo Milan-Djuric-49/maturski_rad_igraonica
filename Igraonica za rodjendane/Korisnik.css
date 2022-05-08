@@ -1,0 +1,17 @@
+﻿body {
+    background-color: coral;
+    color: black;
+}
+
+.user {
+    text-align: right;
+    margin: 20px;
+}
+
+#ImageButton1 {
+    margin-left: 10px;
+}
+
+.zakazi {
+    text-align: center;
+}
