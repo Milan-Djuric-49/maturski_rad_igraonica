@@ -11,7 +11,10 @@ namespace Igraonica_za_rodjendane
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Label1.Text = Korisnik.user_ime + " " + Korisnik.user_prezime;
+            }
         }
     }
 }

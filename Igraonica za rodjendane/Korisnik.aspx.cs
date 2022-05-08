@@ -91,7 +91,7 @@ namespace Igraonica_za_rodjendane
                 SqlConnection veza = Konekcija.Connect();
                 StringBuilder naredba = new StringBuilder("EXEC Dodaj_Rezervacija " + Korisnik.user_id + ", " + Selektovana_Igraonica.igraonica + ", 1, " + "'" + Calendar1.SelectedDate.ToString("yyyy-MM-dd") + "'" + ", 0");
                 SqlCommand komanda = new SqlCommand(naredba.ToString(), veza);
-                Label1.Text = naredba.ToString();
+                //Label1.Text = naredba.ToString();
                 try
                 {
                     veza.Open();
