@@ -101,7 +101,7 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selektovana_Igraonica.cs" />
+    <Compile Include="Podaci.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

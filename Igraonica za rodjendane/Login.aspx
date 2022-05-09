@@ -15,7 +15,7 @@
         </p>
 
         <p>
-            <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" class="input"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" placeholder="Email" class="input" TextMode="Email"></asp:TextBox>
         </p>
 
         <p>

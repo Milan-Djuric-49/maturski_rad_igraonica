@@ -19,6 +19,11 @@ namespace Igraonica_za_rodjendane
         {
             if (!IsPostBack)
             {
+                if (Korisnik.user_uloga != 0)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 Label1.Text = Korisnik.user_ime + " " + Korisnik.user_prezime;
                 IgraonicaPopulate();
                 Calendar1.Enabled = false;
@@ -77,7 +82,7 @@ namespace Igraonica_za_rodjendane
             Calendar1.Enabled = true;
 
             igraonica = DropDownList1.SelectedValue;
-            Selektovana_Igraonica.igraonica = igraonica;
+            Podaci.igraonica = igraonica;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -89,7 +94,7 @@ namespace Igraonica_za_rodjendane
             else
             {
                 SqlConnection veza = Konekcija.Connect();
-                StringBuilder naredba = new StringBuilder("EXEC Dodaj_Rezervacija " + Korisnik.user_id + ", " + Selektovana_Igraonica.igraonica + ", 1, " + "'" + Calendar1.SelectedDate.ToString("yyyy-MM-dd") + "'" + ", 0");
+                StringBuilder naredba = new StringBuilder("EXEC Dodaj_Rezervacija " + Korisnik.user_id + ", " + Podaci.igraonica + ", 1, " + "'" + Calendar1.SelectedDate.ToString("yyyy-MM-dd") + "'" + ", 0");
                 SqlCommand komanda = new SqlCommand(naredba.ToString(), veza);
                 //Label1.Text = naredba.ToString();
                 try

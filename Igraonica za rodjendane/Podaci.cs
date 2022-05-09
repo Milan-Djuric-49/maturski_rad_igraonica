@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Igraonica_za_rodjendane
 {
-    public class Selektovana_Igraonica
+    public class Podaci
     {
         static public string igraonica = "0";
     }
