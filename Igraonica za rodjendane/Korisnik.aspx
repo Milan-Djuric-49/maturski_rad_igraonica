@@ -16,7 +16,7 @@
             </asp:DropDownList>
             <asp:ImageButton ID="ImageButton1" runat="server" Height="19px" ImageUrl="~/calendar.png" OnClick="ImageButton1_Click" Width="19px" />
             <br /><br /><br /><br />
-            <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="Black" Font-Names="Times New Roman" Font-Size="Medium" ForeColor="Black" Height="400px" Width="100%" OnDayRender="Calendar1_DayRender">
+            <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="Black" Font-Names="Times New Roman" Font-Size="Medium" ForeColor="Black" Height="400px" Width="100%" OnDayRender="Calendar1_DayRender" FirstDayOfWeek="Monday">
                 <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" ForeColor="#333333" Height="10pt" />
                 <DayStyle Width="14%" />
                 <NextPrevStyle Font-Size="8pt" ForeColor="White" />

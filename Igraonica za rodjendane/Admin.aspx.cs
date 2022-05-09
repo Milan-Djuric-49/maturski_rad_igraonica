@@ -70,7 +70,6 @@ namespace Igraonica_za_rodjendane
         private void Animator_Populate()
         {
             SqlConnection veza = Konekcija.Connect();
-            Label1.Text = datum;
             int dan = (int) (DateTime.ParseExact(datum, "yyyy-MM-dd", null).DayOfWeek);
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT Animator.id, ime + ' ' + prezime as naziv FROM Animator JOIN AnimatorRadniDan ON animator_id = Animator.id WHERE dan = " + dan, veza);//dodati where
             DataTable dt_animator = new DataTable();
