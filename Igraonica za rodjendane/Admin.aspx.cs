@@ -31,7 +31,7 @@ namespace Igraonica_za_rodjendane
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (DropDownList1.SelectedIndex < 0 || GridView1.SelectedIndex < 0)
+            if (DropDownList1.SelectedIndex < 0 || GridView1.SelectedIndex < 0 || GridView1.Rows.Count <= GridView1.SelectedIndex)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Izaberite rezervaciju i animatora')", true);
             }
@@ -39,7 +39,8 @@ namespace Igraonica_za_rodjendane
             {
                 int red = int.Parse(GridView1.SelectedRow.RowIndex.ToString());
                 string id = GridView1.Rows[red].Cells[1].Text;
-                datum = (DateTime.Parse(GridView1.Rows[red].Cells[4].Text)).ToString("yyyy-MM-dd");
+                string igraonica_id = GridView1.Rows[red].Cells[4].Text;
+                datum = (DateTime.Parse(GridView1.Rows[red].Cells[6].Text)).ToString("yyyy-MM-dd");
                 string animator_id = DropDownList1.SelectedValue;
 
                 SqlConnection veza = Konekcija.Connect();
@@ -49,7 +50,7 @@ namespace Igraonica_za_rodjendane
                 veza.Open();
                 komanda.ExecuteNonQuery();
 
-                naredba = "DELETE FROM Rezervacija WHERE odobrena = 0 AND datum = '" + datum + "'";
+                naredba = "DELETE FROM Rezervacija WHERE odobrena = 0 AND datum = '" + datum + "'" + " AND igraonica_id = " + igraonica_id;
                 komanda = new SqlCommand(naredba, veza);
                 komanda.ExecuteNonQuery();
                 veza.Close();
@@ -60,7 +61,7 @@ namespace Igraonica_za_rodjendane
 
         private void Rezervacije_Populate()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT id, korisnik_id, igraonica_id, datum, odobrena FROM Rezervacija WHERE odobrena = 0", Konekcija.Connect());
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT Rezervacija.id, korisnik_id, Korisnik.ime + ' ' + Korisnik.prezime AS naziv, igraonica_id, Igraonica.adresa AS adresa, datum FROM Rezervacija JOIN Korisnik ON korisnik_id = Korisnik.id JOIN Igraonica ON igraonica_id = Igraonica.id WHERE odobrena = 0", Konekcija.Connect());
             DataTable tabela = new DataTable();
             adapter.Fill(tabela);
             GridView1.DataSource = tabela;
@@ -83,7 +84,7 @@ namespace Igraonica_za_rodjendane
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int red = int.Parse(GridView1.SelectedRow.RowIndex.ToString());
-            datum = (DateTime.Parse(GridView1.Rows[red].Cells[4].Text)).ToString("yyyy-MM-dd");
+            datum = (DateTime.Parse(GridView1.Rows[red].Cells[6].Text)).ToString("yyyy-MM-dd");
             Animator_Populate();
         }
     }
