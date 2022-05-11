@@ -44,6 +44,20 @@ namespace Igraonica_za_rodjendane
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
+            SqlConnection veza = Konekcija.Connect();
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Rezervacija WHERE igraonica_id = " + igraonica + " AND odobrena = 1", veza);
+            dt_rezervacije = new DataTable();
+            adapter.Fill(dt_rezervacije);
+            for (int i = 0; i < dt_rezervacije.Rows.Count; i++)
+            {
+                string ds = dt_rezervacije.Rows[i]["datum"].ToString();
+                DateTime datum = DateTime.Parse(ds);
+                if (e.Day.Date == datum)
+                {
+                    e.Day.IsSelectable = false;
+                    e.Cell.BackColor = System.Drawing.Color.Red;
+                }
+            }
             if (e.Day.IsOtherMonth)
             {
                 e.Day.IsSelectable = false;
@@ -58,20 +72,6 @@ namespace Igraonica_za_rodjendane
             if (IsPostBack && Calendar1.Enabled == true)
             {
                 igraonica = DropDownList1.SelectedValue;
-            }
-            SqlConnection veza = Konekcija.Connect();
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Rezervacija WHERE igraonica_id = " + igraonica + " AND odobrena = 1", veza);
-            dt_rezervacije = new DataTable();
-            adapter.Fill(dt_rezervacije);
-            for (int i = 0; i < dt_rezervacije.Rows.Count; i++)
-            {
-                string ds = dt_rezervacije.Rows[i]["datum"].ToString();
-                DateTime datum = DateTime.Parse(ds);
-                if (e.Day.Date == datum)
-                {
-                    e.Day.IsSelectable = false;
-                    e.Cell.BackColor = System.Drawing.Color.Red;
-                }
             }
         }
 
