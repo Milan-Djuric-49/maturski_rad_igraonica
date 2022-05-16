@@ -72,7 +72,7 @@ namespace Igraonica_za_rodjendane
         {
             SqlConnection veza = Konekcija.Connect();
             int dan = (int) (DateTime.ParseExact(datum, "yyyy-MM-dd", null).DayOfWeek);
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT Animator.id, ime + ' ' + prezime as naziv FROM Animator JOIN AnimatorRadniDan ON animator_id = Animator.id WHERE dan = " + dan, veza);//dodati where
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT Animator.id, ime + ' ' + prezime as naziv FROM Animator JOIN AnimatorRadniDan ON animator_id = Animator.id WHERE dan = " + dan, veza);
             DataTable dt_animator = new DataTable();
             adapter.Fill(dt_animator);
             DropDownList1.DataSource = dt_animator;
