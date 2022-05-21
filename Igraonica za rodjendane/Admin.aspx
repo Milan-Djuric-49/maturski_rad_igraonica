@@ -34,6 +34,8 @@
             </asp:DropDownList>
             <br />
             <asp:Button ID="Button1" runat="server" Text="Potvrdi" OnClick="Button1_Click" class="button" />
+            <br />
+            <asp:Button ID="Button2" runat="server" Text="Obrisi" class="button" OnClick="Button2_Click" />
         </div>
     </form>
 </body>

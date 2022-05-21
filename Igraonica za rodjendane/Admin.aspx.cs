@@ -87,5 +87,28 @@ namespace Igraonica_za_rodjendane
             datum = (DateTime.Parse(GridView1.Rows[red].Cells[6].Text)).ToString("yyyy-MM-dd");
             Animator_Populate();
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            if (GridView1.SelectedIndex < 0 || GridView1.Rows.Count <= GridView1.SelectedIndex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Izaberite rezervaciju')", true);
+            }
+            else
+            {
+                int red = int.Parse(GridView1.SelectedRow.RowIndex.ToString());
+                string id = GridView1.Rows[red].Cells[1].Text;
+
+                SqlConnection veza = Konekcija.Connect();
+                string naredba = "EXEC Obrisi_Rezervacija " + id;
+                SqlCommand komanda = new SqlCommand(naredba, veza);
+
+                veza.Open();
+                komanda.ExecuteNonQuery();
+                veza.Close();
+
+                Rezervacije_Populate();
+            }
+        }
     }
 }
